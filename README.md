@@ -6,6 +6,7 @@ To create:
 docker pull puppet/puppet-dev-tools:gosu
 docker save puppet/puppet-dev-tools:gosu > puppet_puppet-dev-tools_gosu.tar 
 xz puppet_puppet-dev-tools_gosu.tar
+sha512sum puppet-dev-tools_gosu.tar.xz > puppet-dev-tools_gosu.tar.xz.sha512
 # To avoid github.com's filesize limit of 100Mb:
 split --bytes=$((90*1000**2 )) --numeric-suffixes puppet-dev-tools_gosu.tar.xz  puppet-dev-tools_gosu--part
 ```
@@ -22,6 +23,7 @@ then
 
 ```bash
 cat puppet-dev-tools_gosu--part0? > puppet-dev-tools_gosu.tar.xz
+sha512sum --check puppet-dev-tools_gosu.tar.xz.sha512
 docker load puppet_cd4pe-beta_hv-2.tar.xz
 ```
 
